@@ -1,47 +1,34 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect, useState } from "react";
 import "./App.css";
+import Button from "./components/Button";
 
 function App() {
-	const [count, setCount] = useState(0);
+	const [numero, setNumero] = useState<number>(0);
+	const [nome, setNome] = useState<string>("");
+
+	function decrescimo() {
+		setNumero(numero - 1);
+	}
+
+	useEffect(() => {
+		console.log("Olá useEffect");
+	}, []);
 
 	return (
 		<>
-			<div>
-				<a
-					href="https://vitejs.dev"
-					target="_blank"
-				>
-					<img
-						src={viteLogo}
-						className="logo"
-						alt="Vite logo"
-					/>
-				</a>
-				<a
-					href="https://react.dev"
-					target="_blank"
-				>
-					<img
-						src={reactLogo}
-						className="logo react"
-						alt="React logo"
-					/>
-				</a>
+			<div className="container">
+				<Button
+					action={decrescimo}
+					label="Entrar"
+					className="br-sign-in mt-3 mt-sm-0 ml-sm-3"
+					icon={
+						<i
+							className="fas fa-user"
+							aria-hidden="true"
+						></i>
+					}
+				/>
 			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
 		</>
 	);
 }
