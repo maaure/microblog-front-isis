@@ -4,3 +4,12 @@
     object-fit: cover;
     border-radius: 50%;
 }
+
+.link-sem-alteracao {
+    pointer-events: none;
+}
+  
+.botao-com-alteracao {
+    pointer-events: auto;
+}
+  

@@ -1,15 +1,21 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import Feed from "./pages/Feed";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
 
 function App() {
-	useEffect(() => {
-		console.log("Olá useEffect");
-	}, []);
-
 	return (
 		<>
-			<Feed />
+			<BrowserRouter>
+				<Routes>
+					<Route
+						path="/"
+						element={<Home />}
+					/>
+					<Route path="/publish" />
+					<Route path="/login" />
+					<Route path="/comment" />
+				</Routes>
+			</BrowserRouter>
 		</>
 	);
 }

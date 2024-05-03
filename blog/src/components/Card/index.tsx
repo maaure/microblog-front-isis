@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../Button";
 import "../Card/style.css";
 
@@ -12,6 +13,7 @@ function Card({ title, name, description, image }: ICardProps) {
 	function pass() {
 		console.log("pass");
 	}
+
 	return (
 		<div>
 			<div className="container-lg col-sm-6 col-md-4 col-lg-8">
@@ -67,11 +69,13 @@ function Card({ title, name, description, image }: ICardProps) {
 					<div className="card-footer">
 						<div className="d-flex">
 							<div className="ml-auto">
-								<Button
-									className="br-button tertiary"
-									action={pass}
-									label="Comentar"
-								></Button>
+								<Link to="/comment">
+									<Button
+										className="br-button tertiary botao-com-alteracao"
+										action={pass}
+										label="Comentar"
+									></Button>
+								</Link>
 							</div>
 						</div>
 					</div>

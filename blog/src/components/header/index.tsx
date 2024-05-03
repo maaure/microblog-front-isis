@@ -1,4 +1,5 @@
 import Button from "../Button";
+import { Link } from "react-router-dom";
 
 function Header() {
 	function pass() {
@@ -19,34 +20,38 @@ function Header() {
 						</div>
 						<div className="header-actions">
 							<div className="header-links dropdown">
-								<Button
-									label=""
-									action={pass}
-									icon={
-										<i
-											className="fa fa-paper-plane"
-											aria-hidden="true"
-										></i>
-									}
-									className="br-button circle small"
-								/>
+								<Link to="/publish">
+									<Button
+										label=""
+										action={pass}
+										icon={
+											<i
+												className="fa fa-paper-plane"
+												aria-hidden="true"
+											></i>
+										}
+										className="br-button circle small"
+									/>
+								</Link>
 							</div>
 
 							<span className="br-divider vertical mx-half mx-sm-1"></span>
 
 							<div className="header-login">
 								<div className="header-sign-in">
-									<Button
-										label="Entrar"
-										className="br-sign-in small"
-										icon={
-											<i
-												className="fas fa-user"
-												aria-hidden="true"
-											></i>
-										}
-										action={pass}
-									/>
+									<Link to="/login">
+										<Button
+											label="Entrar"
+											className="br-sign-in small"
+											icon={
+												<i
+													className="fas fa-user"
+													aria-hidden="true"
+												></i>
+											}
+											action={pass}
+										/>
+									</Link>
 								</div>
 							</div>
 						</div>

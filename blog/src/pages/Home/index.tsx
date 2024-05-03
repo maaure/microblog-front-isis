@@ -1,10 +1,39 @@
-import "./";
+import ".";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
 
-function Feed() {
+import { useEffect, useState } from "react";
+
+import PublicationService from "../../services/PublicationService";
+
+function Home() {
+	const [publicacoes, setPublicacoes] = useState<any[]>([]);
+
+	useEffect(() => {
+		handleData();
+	}, []);
+
+	function handleData() {
+		// axiosInstance.get("publicacoes").then((res) => {
+		// 	const { data } = res;
+		// 	console.log(data);
+		// });
+		PublicationService.listarPublicacoes()
+			.then((res) => {
+				const { data } = res;
+				console.log(data);
+				setPublicacoes(data);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	}
+
 	return (
 		<>
+			{publicacoes.map((publicacao) => {
+				return <p>{publicacao.name}</p>;
+			})}
 			<Header />
 			<div className="mt-4 mb-4">
 				<Card
@@ -42,4 +71,4 @@ function Feed() {
 	);
 }
 
-export default Feed;
+export default Home;
