@@ -9,12 +9,12 @@ interface ICardProps {
 }
 
 function Card({ title, name, description, image }: ICardProps) {
-	function oi() {
-		console.log("oi");
+	function pass() {
+		console.log("pass");
 	}
 	return (
 		<div>
-			<div className="col-sm-6 col-md-4 col-lg-8">
+			<div className="container-lg col-sm-6 col-md-4 col-lg-8">
 				<div className="br-card h-fixed">
 					<div className="card-header">
 						<div className="d-flex">
@@ -44,16 +44,17 @@ function Card({ title, name, description, image }: ICardProps) {
 								<div>{name}</div>
 							</div>
 							<div className="ml-auto">
-								<button
+								<Button
+									label=""
 									className="br-button circle"
-									type="button"
-									aria-label="Ícone ilustrativo"
-								>
-									<i
-										className="fas fa-ellipsis-v"
-										aria-hidden="true"
-									></i>
-								</button>
+									icon={
+										<i
+											className="fas fa-ellipsis-v"
+											aria-hidden="true"
+										></i>
+									}
+									action={pass}
+								/>
 							</div>
 						</div>
 					</div>
@@ -68,7 +69,7 @@ function Card({ title, name, description, image }: ICardProps) {
 							<div className="ml-auto">
 								<Button
 									className="br-button tertiary"
-									action={oi}
+									action={pass}
 									label="Comentar"
 								></Button>
 							</div>
