@@ -1,7 +1,17 @@
 import Button from "../Button";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+	const navigate = useNavigate();
+
+	function publishHandleClick() {
+		navigate("/publish");
+	}
+
+	function loginHandleClick() {
+		navigate("/login");
+	}
+
 	function pass() {
 		console.log("pass");
 	}
@@ -20,38 +30,34 @@ function Header() {
 						</div>
 						<div className="header-actions">
 							<div className="header-links dropdown">
-								<Link to="/publish">
-									<Button
-										label=""
-										action={pass}
-										icon={
-											<i
-												className="fa fa-paper-plane"
-												aria-hidden="true"
-											></i>
-										}
-										className="br-button circle small"
-									/>
-								</Link>
+								<Button
+									label=""
+									action={publishHandleClick}
+									icon={
+										<i
+											className="fa fa-paper-plane"
+											aria-hidden="true"
+										></i>
+									}
+									className="br-button circle small"
+								/>
 							</div>
 
 							<span className="br-divider vertical mx-half mx-sm-1"></span>
 
 							<div className="header-login">
 								<div className="header-sign-in">
-									<Link to="/login">
-										<Button
-											label="Entrar"
-											className="br-sign-in small"
-											icon={
-												<i
-													className="fas fa-user"
-													aria-hidden="true"
-												></i>
-											}
-											action={pass}
-										/>
-									</Link>
+									<Button
+										label="Entrar"
+										className="br-sign-in small"
+										icon={
+											<i
+												className="fas fa-user"
+												aria-hidden="true"
+											></i>
+										}
+										action={loginHandleClick}
+									/>
 								</div>
 							</div>
 						</div>

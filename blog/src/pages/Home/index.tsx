@@ -1,6 +1,6 @@
 import ".";
 import Card from "../../components/Card";
-import Header from "../../components/Header";
+import Header from "../../components/header";
 
 import { useEffect, useState } from "react";
 
@@ -22,7 +22,7 @@ function Home() {
 			.then((res) => {
 				const { data } = res;
 				console.log(data);
-				setPublicacoes(data);
+				setPublicacoes(data.results);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -31,42 +31,21 @@ function Home() {
 
 	return (
 		<>
-			{publicacoes.map((publicacao) => {
-				return <p>{publicacao.name}</p>;
-			})}
 			<Header />
-			<div className="mt-4 mb-4">
-				<Card
-					title="Como a internet funciona?"
-					name="Demetria Devonne Lovato"
-					description="Lorem ipsum dolor sit, amet consectetur adipisicing
-					elit. Tempore perferendis nam porro atque ex at,
-					numquam non optio ab eveniet error vel ad
-					exercitationem, earum et fugiat recusandae harum?
-					Assumenda. Lorem ipsum dolor sit, amet consectetur
-					adipisicing elit. Tempore perferendis nam porro
-					atque ex at, numquam non optio ab eveniet error vel
-					ad exercitationem, earum et fugiat recusandae harum?
-					Assumenda. Lorem ipsum dolor sit, amet consectetur adipisicing
-					elit. Tempore perferendis nam porro atque ex at,
-					numquam non optio ab eveniet error vel ad
-					exercitationem, earum et fugiat recusandae harum?
-					Assumenda. Lorem ipsum dolor sit, amet consectetur
-					adipisicing elit. Tempore perferendis nam porro
-					atque ex at, numquam non optio ab eveniet error vel
-					ad exercitationem, earum et fugiat recusandae harum?
-					Assumenda. Lorem ipsum dolor sit, amet consectetur adipisicing
-					elit. Tempore perferendis nam porro atque ex at,
-					numquam non optio ab eveniet error vel ad
-					exercitationem, earum et fugiat recusandae harum?
-					Assumenda. Lorem ipsum dolor sit, amet consectetur
-					adipisicing elit. Tempore perferendis nam porro
-					atque ex at, numquam non optio ab eveniet error vel
-					ad exercitationem, earum et fugiat recusandae harum?
-					Assumenda."
-					image="https://www.w3schools.com/w3images/avatar6.png"
-				/>
-			</div>
+			{publicacoes.map((publicacao) => {
+				return (
+					<div key={publicacao.id}>
+						<div className="mt-4 mb-4">
+							<Card
+								title={publicacao.titulo}
+								name={publicacao.autor.nome}
+								description={publicacao.descricao}
+								image=""
+							/>
+						</div>
+					</div>
+				);
+			})}
 		</>
 	);
 }
