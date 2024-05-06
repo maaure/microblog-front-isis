@@ -1,6 +1,17 @@
 import Button from "../Button";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+	const navigate = useNavigate();
+
+	function publishHandleClick() {
+		navigate("/publish");
+	}
+
+	function loginHandleClick() {
+		navigate("/login");
+	}
+
 	function pass() {
 		console.log("pass");
 	}
@@ -21,7 +32,7 @@ function Header() {
 							<div className="header-links dropdown">
 								<Button
 									label=""
-									action={pass}
+									action={publishHandleClick}
 									icon={
 										<i
 											className="fa fa-paper-plane"
@@ -45,7 +56,7 @@ function Header() {
 												aria-hidden="true"
 											></i>
 										}
-										action={pass}
+										action={loginHandleClick}
 									/>
 								</div>
 							</div>

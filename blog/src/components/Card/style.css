@@ -4,3 +4,24 @@
     object-fit: cover;
     border-radius: 50%;
 }
+
+.link-sem-alteracao {
+    pointer-events: none;
+}
+
+.botao-com-alteracao {
+    pointer-events: auto;
+}
+
+
+.link {
+    text-decoration: none;
+    /* Remove a sublinhado padrão */
+    color: black;
+    /* Define a cor do texto */
+}
+
+.link:hover {
+    text-decoration: none;
+    /* Remove a sublinhado */
+}

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 import "../Card/style.css";
 
@@ -9,9 +10,16 @@ interface ICardProps {
 }
 
 function Card({ title, name, description, image }: ICardProps) {
-	function pass() {
-		console.log("pass");
+	const navigate = useNavigate();
+
+	function commentHandleClick() {
+		navigate("/comment");
 	}
+
+	const pass = () => {
+		console.log("pass");
+	};
+
 	return (
 		<div>
 			<div className="container-lg col-sm-6 col-md-4 col-lg-8">
@@ -68,8 +76,8 @@ function Card({ title, name, description, image }: ICardProps) {
 						<div className="d-flex">
 							<div className="ml-auto">
 								<Button
-									className="br-button tertiary"
-									action={pass}
+									className="br-button tertiary botao-com-alteracao"
+									action={commentHandleClick}
 									label="Comentar"
 								></Button>
 							</div>
