@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 import "../Card/style.css";
+import Image from "../../assets/images/default.png";
 
 interface ICardProps {
 	title: string;
@@ -22,11 +23,11 @@ function Card({ title, name, description, image }: ICardProps) {
 
 	return (
 		<div>
-			<div className="container-lg col-sm-6 col-md-4 col-lg-8">
+			<div className="container-lg col-sm-6 col-md-4 col-lg-6">
 				<div className="br-card h-fixed">
 					<div className="card-header">
 						<div className="d-flex">
-							<span
+							{/* <span
 								className="br-avatar mr-2"
 								title={name}
 							>
@@ -44,8 +45,8 @@ function Card({ title, name, description, image }: ICardProps) {
 										></i>
 									)}
 								</span>
-							</span>
-							<div className="ml-3">
+							</span> */}
+							<div className="ml-1">
 								<div className="text-weight-semi-bold text-up-02">
 									{title}
 								</div>
@@ -66,10 +67,26 @@ function Card({ title, name, description, image }: ICardProps) {
 							</div>
 						</div>
 					</div>
+
 					<div
 						className="card-content"
 						tabIndex={0}
 					>
+						<div className="mb-4">
+							{image ? (
+								<img
+									src={image}
+									className="image"
+									alt="Avatar"
+								/>
+							) : (
+								<img
+									src={Image}
+									alt="Imagem padrão"
+									className="image"
+								/>
+							)}
+						</div>
 						<p>{description}</p>
 					</div>
 					<div className="card-footer">

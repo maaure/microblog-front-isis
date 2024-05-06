@@ -40,7 +40,7 @@ function Home() {
 								title={publicacao.titulo}
 								name={publicacao.autor.nome}
 								description={publicacao.descricao}
-								image=""
+								image={publicacao.imagem}
 							/>
 						</div>
 					</div>
