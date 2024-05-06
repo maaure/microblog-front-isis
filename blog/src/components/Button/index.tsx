@@ -1,10 +1,6 @@
-interface IButtonProps {
-	action: () => void;
-	label: string;
-	className: string;
-	icon?: JSX.Element;
-}
+import { IButtonProps } from "./IButtonProps";
 
+/** Componente de botão */
 export default function Button(props: IButtonProps) {
 	const { action, label, className, icon } = props;
 	return (
