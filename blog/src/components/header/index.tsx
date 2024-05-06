@@ -49,7 +49,7 @@ function Header() {
 								<div className="header-sign-in">
 									<Button
 										label="Entrar"
-										className="br-sign-in small"
+										className="br-sign-in "
 										icon={
 											<i
 												className="fas fa-user"
