@@ -1,6 +1,7 @@
 import ".";
 import Card from "../../components/Card";
-import Header from "../../components/header";
+import Header from "../../components/Header";
+import Formulario from "../../components/Formulario";
 
 import { useEffect, useState } from "react";
 
