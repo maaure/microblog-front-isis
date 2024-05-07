@@ -6121,7 +6121,7 @@ store2@^2.14.2:
 
 storybook@^8.0.10:
   version "8.0.10"
-  resolved "https://registry.npmjs.org/storybook/-/storybook-8.0.10.tgz"
+  resolved "https://registry.yarnpkg.com/storybook/-/storybook-8.0.10.tgz#397e7a95641421610ba4741bc63adbb380eed01f"
   integrity sha512-9/4oxISopLyr5xz7Du27mmQgcIfB7UTLlNzkK4IklWTiSgsOgYgZpsmIwymoXNtkrvh+QsqskdcUP1C7nNiEtw==
   dependencies:
     "@storybook/cli" "8.0.10"

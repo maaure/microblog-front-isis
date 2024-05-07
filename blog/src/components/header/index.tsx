@@ -1,7 +1,9 @@
 import Button from "../Button";
 import { useNavigate } from "react-router-dom";
+import { IHeaderProps } from "./IHeaderProps";
 
-function Header() {
+/** Componente de header */
+function Header({ name }: IHeaderProps) {
 	const navigate = useNavigate();
 
 	function publishHandleClick() {
@@ -12,9 +14,14 @@ function Header() {
 		navigate("/login");
 	}
 
+	function createAccountHandleClick() {
+		navigate("/create-account");
+	}
+
 	function pass() {
 		console.log("pass");
 	}
+
 	return (
 		<>
 			<header className="br-header">
@@ -29,36 +36,58 @@ function Header() {
 							</a>
 						</div>
 						<div className="header-actions">
-							<div className="header-links dropdown">
-								<Button
-									label=""
-									action={publishHandleClick}
-									icon={
-										<i
-											className="fa fa-paper-plane"
-											aria-hidden="true"
-										></i>
-									}
-									className="br-button circle small"
-								/>
-							</div>
-
-							<span className="br-divider vertical mx-half mx-sm-1"></span>
-
 							<div className="header-login">
-								<div className="header-sign-in">
-									<Button
-										label="Entrar"
-										className="br-sign-in "
-										icon={
-											<i
-												className="fas fa-user"
-												aria-hidden="true"
-											></i>
-										}
-										action={loginHandleClick}
-									/>
-								</div>
+								{name ? (
+									<div className="header-sign-in">
+										<Button
+											label=""
+											action={publishHandleClick}
+											icon={
+												<i
+													className="fa fa-paper-plane"
+													aria-hidden="true"
+												></i>
+											}
+											className="br-button circle small"
+										/>
+
+										<span className="p ml-3 mr-3">
+											Olá, {name}!
+										</span>
+
+										<Button
+											label="Sair"
+											className="br-sign-in"
+											icon={
+												<i
+													className="fas fa-user"
+													aria-hidden="true"
+												></i>
+											}
+											action={pass}
+										/>
+									</div>
+								) : (
+									<div className="header-sign-in">
+										<Button
+											label="Entrar"
+											className="br-sign-in mr-3"
+											icon={
+												<i
+													className="fas fa-user"
+													aria-hidden="true"
+												></i>
+											}
+											action={loginHandleClick}
+										/>
+
+										<Button
+											label="Criar Conta"
+											className="br-button primary"
+											action={createAccountHandleClick}
+										/>
+									</div>
+								)}
 							</div>
 						</div>
 					</div>
