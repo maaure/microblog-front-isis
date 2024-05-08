@@ -1,10 +1,6 @@
 import ".";
 import Header from "../../components/Header";
-import Formulario from "../../components/Formulario";
-
-// import { useEffect, useState } from "react";
-
-// import PublicationService from "../../services/PublicationService";
+import Formulario from "../../components/Formulario/FormularioCadastro";
 
 function Register() {
 	return (

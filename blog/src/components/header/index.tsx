@@ -15,7 +15,7 @@ function Header({ name }: IHeaderProps) {
 	}
 
 	function createAccountHandleClick() {
-		navigate("/create-account");
+		navigate("/register");
 	}
 
 	function pass() {
