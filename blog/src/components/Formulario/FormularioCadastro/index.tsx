@@ -1,6 +1,10 @@
 import { useForm, Form } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import RegisterService from "../../../services/RegisterService";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "../../Button";
 
 const schema = yup.object().shape({
 	username: yup
@@ -17,20 +21,36 @@ const schema = yup.object().shape({
 		.required("Senha é obrigatória!"),
 });
 
-// interface IFormularioProps {
-// 	titulo: string;
-// 	nomeBotao: string;
-// }
-
-function Formulario() {
+function FormularioCadastro() {
 	const {
-		handleSubmit,
 		register,
+		handleSubmit,
 		formState: { errors },
-	} = useForm({ resolver: yupResolver(schema) });
+	} = useForm({
+		resolver: yupResolver(schema),
+	});
 
-	function onSubmit(data): void {
-		console.log(data);
+	const navigate = useNavigate();
+
+	const [username, setUsername] = useState("");
+	const [nome, setNome] = useState("");
+	const [senha, setSenha] = useState("");
+
+	const handleSaveUser = async (data) => {
+		try {
+			const response = await RegisterService.realizarCadastro(data);
+			console.log(data);
+			setUsername(username);
+			setNome(nome);
+			setSenha(senha);
+			navigate("/login");
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	function loginHandleClick() {
+		navigate("/login");
 	}
 
 	return (
@@ -43,7 +63,7 @@ function Formulario() {
 								<p className="header-title text-up-03">
 									Faça seu cadastro
 								</p>
-								<form onSubmit={handleSubmit(onSubmit)}>
+								<form onSubmit={handleSubmit(handleSaveUser)}>
 									<div
 										className={`br-input ${errors.username !== undefined ? "danger" : ""}`}
 									>
@@ -97,15 +117,32 @@ function Formulario() {
 									</div>
 
 									<div
-										className={`br-input ${errors.senha !== undefined ? "danger" : ""}`}
+										className={` ${errors.senha !== undefined ? "danger" : ""}`}
 									>
-										<label htmlFor="senha">Senha:</label>
-										<input
-											id="senha"
-											type="text"
-											placeholder="Digite sua senha..."
-											{...register("senha")}
-										/>
+										<div className="br-input input-button">
+											<label htmlFor="input-password">
+												Senha
+											</label>
+											<input
+												id="input-password"
+												type="password"
+												placeholder="Digite sua senha..."
+												{...register("senha")}
+											/>
+											<button
+												className="br-button"
+												type="button"
+												aria-label="Exibir senha"
+												role="switch"
+												aria-checked="false"
+											>
+												<i
+													className="fas fa-eye"
+													aria-hidden="false"
+												></i>
+											</button>
+										</div>
+
 										{errors.senha !== undefined && (
 											<span
 												className="feedback danger"
@@ -122,9 +159,11 @@ function Formulario() {
 									</div>
 
 									<div className="mt-4">
-										<button className="br-button block primary">
-											Cadastrar
-										</button>
+										<Button
+											label="Cadastrar"
+											className="br-button block primary"
+											type="submit"
+										/>
 									</div>
 								</form>
 							</div>
@@ -136,4 +175,4 @@ function Formulario() {
 	);
 }
 
-export default Formulario;
+export default FormularioCadastro;

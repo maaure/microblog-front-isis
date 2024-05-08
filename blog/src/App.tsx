@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
 	return (
@@ -17,7 +18,10 @@ function App() {
 						element={<Register />}
 					/>
 					<Route path="/publish" />
-					<Route path="/login" />
+					<Route
+						path="/login"
+						element={<Login />}
+					/>
 					<Route path="/comment" />
 				</Routes>
 			</BrowserRouter>
