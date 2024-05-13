@@ -1,7 +1,6 @@
 import ".";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
-import Formulario from "../../components/Formulario/FormularioCadastro";
 
 import { useEffect, useState } from "react";
 
@@ -15,10 +14,6 @@ function Home() {
 	}, []);
 
 	function handleData() {
-		// axiosInstance.get("publicacoes").then((res) => {
-		// 	const { data } = res;
-		// 	console.log(data);
-		// });
 		PublicationService.listarPublicacoes()
 			.then((res) => {
 				const { data } = res;
@@ -32,7 +27,8 @@ function Home() {
 
 	return (
 		<>
-			<Header />
+			{localStorage.key != null ? <Header /> : null}
+
 			{publicacoes.map((publicacao) => {
 				return (
 					<div key={publicacao.id}>

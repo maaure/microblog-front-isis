@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Publish from "./pages/Publish";
 // import useAuth from "./hooks/useAuth";
 
 // const Private = ({ Item }) => {
@@ -24,10 +25,14 @@ function App() {
 						path="/register"
 						element={<Register />}
 					/>
-					<Route path="/publish" />
+
 					<Route
 						path="/login"
 						element={<Login />}
+					/>
+					<Route
+						path="/publish"
+						element={<Publish />}
 					/>
 					<Route path="/comment" />
 				</Routes>
