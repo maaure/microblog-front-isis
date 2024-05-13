@@ -1,10 +1,12 @@
 import Button from "../Button";
 import { useNavigate } from "react-router-dom";
 import { IHeaderProps } from "./IHeaderProps";
+import { useEffect, useState } from "react";
 
 /** Componente de header */
 function Header({ name }: IHeaderProps) {
 	const navigate = useNavigate();
+	const [isAutheticated, setIsAutheticated] = useState<boolean>();
 
 	function publishHandleClick() {
 		navigate("/publish");
@@ -18,8 +20,21 @@ function Header({ name }: IHeaderProps) {
 		navigate("/register");
 	}
 
-	function pass() {
-		console.log("pass");
+	useEffect(() => {
+		getToken();
+	}, []);
+
+	function getToken() {
+		const token = localStorage.getItem("access");
+		if (token != undefined) {
+			setIsAutheticated(true);
+		}
+		return token;
+	}
+
+	function logout() {
+		setIsAutheticated(false);
+		localStorage.removeItem("access");
 	}
 
 	return (
@@ -37,7 +52,7 @@ function Header({ name }: IHeaderProps) {
 						</div>
 						<div className="header-actions">
 							<div className="header-login">
-								{name ? (
+								{isAutheticated ? (
 									<div className="header-sign-in">
 										<Button
 											label=""
@@ -64,7 +79,7 @@ function Header({ name }: IHeaderProps) {
 													aria-hidden="true"
 												></i>
 											}
-											action={pass}
+											action={logout}
 										/>
 									</div>
 								) : (
@@ -96,7 +111,6 @@ function Header({ name }: IHeaderProps) {
 							<div className="header-menu-trigger">
 								<Button
 									label=""
-									action={pass}
 									icon={
 										<i
 											className="fas fa-bars"
