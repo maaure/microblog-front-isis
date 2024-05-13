@@ -35,11 +35,16 @@ function Login() {
 
 	const handleSaveUser = async (data) => {
 		try {
-			const response = await LoginService.realizarLogin(data);
-			console.log(data);
+			const response = await LoginService.realizarLogin(
+				data.username,
+				data.senha,
+			);
+			console.log(response);
 			setUsername(username);
 			setSenha(senha);
-			navigate("/login");
+			const access = response.access;
+			localStorage.setItem("access", access);
+			navigate("/");
 		} catch (error) {
 			console.error(error);
 		}

@@ -1,9 +1,13 @@
 import axiosInstance from "./axiosInstance";
 
 class LoginService {
-    async realizarLogin(data){
-        const response = await axiosInstance.post("login/", data)
-        return response.data; // retorna aqui Acess e refresh
+    async realizarLogin(username: string, password: string){
+        try {
+            const response = await axiosInstance.post("login/", { username, password})
+            return response.data; // retorna aqui Acess e refresh
+        } catch (error) {
+            return null;
+        }
     }
 }
 
