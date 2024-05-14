@@ -27,10 +27,6 @@ function Publish() {
 
 	const navigate = useNavigate();
 
-	const [titulo, setTitulo] = useState("");
-	const [imagem, setImagem] = useState("");
-	const [descricao, setDescricao] = useState("");
-
 	const handleSavePublish = async (data) => {
 		try {
 			const response = await PublishService.criarPublicacao(
@@ -39,19 +35,18 @@ function Publish() {
 				data.descricao,
 			);
 			console.log(response);
-			setTitulo(titulo);
-			setImagem(imagem);
-			setDescricao(descricao);
+			console.log(data);
+
 			navigate("/");
-			const access = response.access;
-			localStorage.setItem("access", access);
+			// const access = response.access;
+			// localStorage.setItem("access", access);
 		} catch (error) {
 			console.error(error);
 		}
 	};
 
 	// if (!Logado) {
-
+	// return navigate("/login")
 	// }
 
 	return (
@@ -96,13 +91,33 @@ function Publish() {
 									<div
 										className={`br-input ${errors.imagem !== undefined ? "danger" : ""}`}
 									>
-										<label htmlFor="imagem">Imagem:</label>
-										<input
-											id="imagem"
-											type="text"
-											placeholder="Envia sua imagem..."
-											{...register("imagem")}
-										/>
+										<div className="br-upload">
+											<label
+												className="upload-label"
+												htmlFor="single-file"
+											>
+												<span>Envio de imagem:</span>
+											</label>
+											<input
+												className="upload-input"
+												id="single-file"
+												type="file"
+												aria-label="enviar arquivo"
+												{...register("imagem")}
+											/>
+											<button
+												className="upload-button"
+												type="button"
+												aria-hidden="true"
+											>
+												<i
+													className="fas fa-upload"
+													aria-hidden="true"
+												></i>
+												<span>Selecione o arquivo</span>
+											</button>
+											<div className="upload-list"></div>
+										</div>
 										{errors.imagem !== undefined && (
 											<span
 												className="feedback danger"
@@ -121,30 +136,16 @@ function Publish() {
 									<div
 										className={` ${errors.descricao !== undefined ? "danger" : ""}`}
 									>
-										<div className="br-input input-button">
-											<label htmlFor="input-descricao">
+										<div className="br-textarea">
+											<label htmlFor="textarea-id1">
 												Descrição:
 											</label>
-											<input
-												id="input-descricao"
-												type="descricao"
+											<textarea
+												id="textarea-id1"
 												placeholder="Digite sua descrição..."
 												{...register("descricao")}
-											/>
-											<button
-												className="br-button"
-												type="button"
-												aria-label="Exibir descricao"
-												role="switch"
-												aria-checked="false"
-											>
-												<i
-													className="fas fa-eye"
-													aria-hidden="false"
-												></i>
-											</button>
+											></textarea>
 										</div>
-
 										{errors.descricao !== undefined && (
 											<span
 												className="feedback danger"
