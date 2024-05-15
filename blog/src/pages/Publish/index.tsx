@@ -33,7 +33,7 @@ function Publish() {
 			console.log(data);
 			formData.append("titulo", data.titulo);
 			formData.append("descricao", data.descricao);
-			// formData.append("imagem", data.imagem);
+			formData.append("imagem", data.imagem[0]);
 
 			const response = await PublishService.criarPublicacao(formData);
 			console.log(response);
