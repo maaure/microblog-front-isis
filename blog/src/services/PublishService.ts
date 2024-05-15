@@ -1,13 +1,10 @@
 import axiosInstance from "./axiosInstance";
 
 class PublishService {
-    async criarPublicacao(titulo: string, imagem: string, descricao: string){
-        try {
-            const response = await axiosInstance.post("publicacao/", { titulo, imagem, descricao})
-            return response.data;
-        } catch (error) {
-            return null;
-        }
+    async criarPublicacao(data){
+        const response= await axiosInstance.post("publicacao/", data);
+        return response.data;
+       
     }
 }
 

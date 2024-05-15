@@ -11,8 +11,9 @@ function getToken(): string | null {
 axiosInstance.interceptors.request.use(
     (config) => {
         const accessToken = getToken();
+        console.log("token: " + accessToken);
         if(accessToken != null){
-            config.headers.Authorization = `Token ${accessToken}`;
+            config.headers.Authorization = `Bearer ${accessToken}`;
         }
         return config;
     },

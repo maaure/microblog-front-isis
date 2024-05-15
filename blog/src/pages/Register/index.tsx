@@ -40,7 +40,7 @@ function Register() {
 	const handleSaveUser = async (data) => {
 		try {
 			const response = await RegisterService.realizarCadastro(data);
-			console.log(data);
+			console.log(response);
 			setUsername(username);
 			setNome(nome);
 			setSenha(senha);
