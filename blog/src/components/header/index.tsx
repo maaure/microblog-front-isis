@@ -66,19 +66,13 @@ function Header({ name }: IHeaderProps) {
 											className="br-button circle small"
 										/>
 
-										<span className="p ml-3 mr-3">
+										{/* <span className="p ml-3 mr-3">
 											Olá, {name}!
-										</span>
+										</span> */}
 
 										<Button
 											label="Sair"
 											className="br-sign-in"
-											icon={
-												<i
-													className="fas fa-user"
-													aria-hidden="true"
-												></i>
-											}
 											action={logout}
 										/>
 									</div>
@@ -87,12 +81,6 @@ function Header({ name }: IHeaderProps) {
 										<Button
 											label="Entrar"
 											className="br-sign-in mr-3"
-											icon={
-												<i
-													className="fas fa-user"
-													aria-hidden="true"
-												></i>
-											}
 											action={loginHandleClick}
 										/>
 

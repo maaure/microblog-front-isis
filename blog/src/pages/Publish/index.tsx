@@ -12,7 +12,7 @@ const schema = yup.object().shape({
 		.string()
 		.max(30, "O título deve ter no máximo 30 caracteres!")
 		.required("Título é obrigatório!"),
-	imagem: yup.string(),
+	imagem: yup.mixed(),
 	descricao: yup.string().required("Descrição é obrigatória!"),
 });
 
@@ -27,15 +27,16 @@ function Publish() {
 
 	const navigate = useNavigate();
 
+	const formData = new FormData();
 	const handleSavePublish = async (data) => {
 		try {
-			const response = await PublishService.criarPublicacao(
-				data.titulo,
-				data.imagem,
-				data.descricao,
-			);
-			console.log(response);
 			console.log(data);
+			formData.append("titulo", data.titulo);
+			formData.append("descricao", data.descricao);
+			// formData.append("imagem", data.imagem);
+
+			const response = await PublishService.criarPublicacao(formData);
+			console.log(response);
 
 			navigate("/");
 			// const access = response.access;
@@ -88,7 +89,11 @@ function Publish() {
 										)}
 									</div>
 
-									<div
+									<input
+										type="file"
+										{...register("imagem")}
+									/>
+									{/* <div
 										className={`br-input ${errors.imagem !== undefined ? "danger" : ""}`}
 									>
 										<div className="br-upload">
@@ -98,6 +103,7 @@ function Publish() {
 											>
 												<span>Envio de imagem:</span>
 											</label>
+
 											<input
 												className="upload-input"
 												id="single-file"
@@ -105,6 +111,7 @@ function Publish() {
 												aria-label="enviar arquivo"
 												{...register("imagem")}
 											/>
+
 											<button
 												className="upload-button"
 												type="button"
@@ -131,7 +138,7 @@ function Publish() {
 												{errors.imagem?.message}
 											</span>
 										)}
-									</div>
+									</div> */}
 
 									<div
 										className={` ${errors.descricao !== undefined ? "danger" : ""}`}
