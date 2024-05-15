@@ -1,6 +1,6 @@
 import { uniqueId } from "lodash";
 import { forwardRef, useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller } from "react-hook-form";
 
 interface UploadProps extends React.ComponentPropsWithRef<"input"> {
 	control: any;
@@ -15,7 +15,6 @@ const Upload = forwardRef((props: UploadProps, _ref): JSX.Element => {
 	const id = uniqueId("single-file-");
 	const [files, setFiles] = useState<File[]>([]);
 	const [errors, setErrors] = useState(error);
-	const { clearErrors } = useForm();
 
 	useEffect(() => {
 		setErrors(error);
