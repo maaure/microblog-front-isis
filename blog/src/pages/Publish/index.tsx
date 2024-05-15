@@ -1,7 +1,6 @@
 import { useForm, Form } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Header from "../../components/Header";
@@ -12,7 +11,13 @@ const schema = yup.object().shape({
 		.string()
 		.max(30, "O título deve ter no máximo 30 caracteres!")
 		.required("Título é obrigatório!"),
-	imagem: yup.mixed(),
+	imagem: yup.mixed().test("file", "A imagem é obrigatória!", (value) => {
+		let fileValue = value as FileList;
+		if (fileValue?.length > 0) {
+			return true;
+		}
+		return false;
+	}),
 	descricao: yup.string().required("Descrição é obrigatória!"),
 });
 
@@ -39,16 +44,10 @@ function Publish() {
 			console.log(response);
 
 			navigate("/");
-			// const access = response.access;
-			// localStorage.setItem("access", access);
 		} catch (error) {
 			console.error(error);
 		}
 	};
-
-	// if (!Logado) {
-	// return navigate("/login")
-	// }
 
 	return (
 		<>
@@ -89,10 +88,28 @@ function Publish() {
 										)}
 									</div>
 
-									<input
-										type="file"
-										{...register("imagem")}
-									/>
+									<div
+										className={`br-input ${errors.imagem !== undefined ? "danger" : ""}`}
+									>
+										<input
+											type="file"
+											{...register("imagem")}
+										/>
+										{errors.imagem !== undefined && (
+											<span
+												className="feedback danger"
+												role="alert"
+												id="danger"
+											>
+												<i
+													className="fas fa-times-circle"
+													aria-hidden="true"
+												></i>
+												{errors.imagem?.message}
+											</span>
+										)}
+									</div>
+
 									{/* <div
 										className={`br-input ${errors.imagem !== undefined ? "danger" : ""}`}
 									>
