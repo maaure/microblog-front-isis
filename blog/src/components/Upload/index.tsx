@@ -10,7 +10,7 @@ interface UploadProps extends React.ComponentPropsWithRef<"input"> {
 	error?: any;
 }
 
-const Upload = forwardRef((props: UploadProps, _ref): JSX.Element => {
+const UploadWrapper = forwardRef((props: UploadProps, _ref): JSX.Element => {
 	const { label, onChange, error } = props;
 	const id = uniqueId("single-file-");
 	const [files, setFiles] = useState<File[]>([]);
@@ -131,10 +131,9 @@ const Upload = forwardRef((props: UploadProps, _ref): JSX.Element => {
 	);
 });
 
-function Wrapper(props: UploadProps) {
+function Upload(props: UploadProps) {
 	const { control, name } = props;
 
-	useEffect(() => {}, [props]);
 	return control !== undefined ? (
 		<Controller
 			control={control}
@@ -143,7 +142,7 @@ function Wrapper(props: UploadProps) {
 				field: { onChange, onBlur, ref },
 				fieldState: { error },
 			}) => (
-				<Upload
+				<UploadWrapper
 					{...props}
 					onChange={onChange}
 					onBlur={onBlur}
@@ -153,8 +152,8 @@ function Wrapper(props: UploadProps) {
 			)}
 		/>
 	) : (
-		<Upload {...props} />
+		<UploadWrapper {...props} />
 	);
 }
 
-export default Wrapper;
+export default Upload;
