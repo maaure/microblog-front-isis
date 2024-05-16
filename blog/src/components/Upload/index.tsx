@@ -33,9 +33,7 @@ const Upload = forwardRef((props: UploadProps, _ref): JSX.Element => {
 			const fileArray = Array.from(event.target.files);
 			setFiles(fileArray);
 			setErrors(undefined);
-			if (onChange !== undefined) {
-				onChange(fileArray);
-			}
+			setFilesChange(fileArray);
 		}
 	};
 
@@ -45,6 +43,13 @@ const Upload = forwardRef((props: UploadProps, _ref): JSX.Element => {
 
 	function removeFile(index: number): void {
 		setFiles(files.splice(index, index));
+		setFilesChange(undefined);
+	}
+
+	function setFilesChange(files: any): void {
+		if (onChange !== undefined) {
+			onChange(files);
+		}
 	}
 
 	return (

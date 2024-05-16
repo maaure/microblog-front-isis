@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Header from "../../components/Header";
 import PublishService from "../../services/PublishService";
+import Upload from "../../components/Upload";
 
 const schema = yup.object().shape({
 	titulo: yup
@@ -26,6 +27,7 @@ function Publish() {
 		register,
 		handleSubmit,
 		formState: { errors },
+		control,
 	} = useForm({
 		resolver: yupResolver(schema),
 	});
@@ -88,27 +90,11 @@ function Publish() {
 										)}
 									</div>
 
-									<div
-										className={`br-input ${errors.imagem !== undefined ? "danger" : ""}`}
-									>
-										<input
-											type="file"
-											{...register("imagem")}
-										/>
-										{errors.imagem !== undefined && (
-											<span
-												className="feedback danger"
-												role="alert"
-												id="danger"
-											>
-												<i
-													className="fas fa-times-circle"
-													aria-hidden="true"
-												></i>
-												{errors.imagem?.message}
-											</span>
-										)}
-									</div>
+									<Upload
+										control={control}
+										name="imagem"
+										label="Imagem: "
+									/>
 
 									{/* <div
 										className={`br-input ${errors.imagem !== undefined ? "danger" : ""}`}
